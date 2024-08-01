@@ -1,1 +1,1 @@
-# Check_ssl_serticate
+# Check_ssl_certificate
