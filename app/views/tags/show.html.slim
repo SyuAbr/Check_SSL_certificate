@@ -1,0 +1,22 @@
+.container
+  = render 'shared/header'
+
+  .row
+    .col-md-12
+      .card.rounded
+        .card-header
+          h4
+            | Тег: 
+            = @tag.name
+        .card-body
+          p
+            strong(style="margin-right: 10px;")
+              | Название:
+            = @tag.name
+          p
+            strong(style="margin-right: 10px;")
+              | Токен бота:
+            = @tag.bot_token
+        .card-footer.d-flex.align-items-center
+          = link_to 'Редактировать', edit_tag_path(@tag), class: 'btn btn-dark mx-1'
+          = button_to 'Удалить', tag_path(@tag), method: :delete, data: { confirm: 'Подтвердите удаление' }, class: 'btn btn-secondary mx-1'

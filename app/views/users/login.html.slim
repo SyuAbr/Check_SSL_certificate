@@ -1,0 +1,23 @@
+.container.py-5
+  .row.justify-content-center
+    .col-md-6
+      .card.rounded
+        .card-header.text-center.rounded-top
+          h3.mb-0
+            | Вход
+        .card-body
+          = form_with model: @user, url:  user_path, method: :post, html: { id: 'formLogin', autocomplete: 'off', novalidate: true } do |f|
+            .form-group
+              = f.label :email, 'Адрес электронной почты', class: 'form-label'
+              = f.text_field :email, class: 'form-control form-control-lg rounded ' + (@user.errors[:email].any? ? 'is-invalid' : ''), required: true
+              - if @user.errors[:email].any?
+                .invalid-feedback
+                  = @user.errors[:email].first
+            .form-group
+              = f.label :password, 'Пароль', class: 'form-label'
+              = f.password_field :password, class: 'form-control form-control-lg rounded ' + (@user.errors[:password].any? ? 'is-invalid' : ''), required: true, autocomplete: 'new-password'
+              - if @user.errors[:password].any?
+                .invalid-feedback
+                  = @user.errors[:password].first
+            .form-group.text-center.mt-3
+              = f.submit 'Войти', class: 'btn btn-dark btn-lg rounded w-100', id: 'btnLogin'

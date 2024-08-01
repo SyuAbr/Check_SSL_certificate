@@ -1,0 +1,30 @@
+.container
+  = render 'shared/header'
+
+  .row
+    .col-md-12
+      .card.rounded
+        .card-header
+          h4
+            | Детали сайта
+        .card-body
+          p
+            strong(style="margin-right: 10px;")
+              | Адрес:
+            = @website.address
+          p
+            strong(style="margin-right: 10px;")
+              | Срок действия сертификата:
+            = @website.certificate_expiration.strftime("%d.%m.%Y")
+          p
+            strong(style="margin-right: 10px;")
+              | Владелец:
+            = @website.user.email
+          p
+            strong(style="margin-right: 10px;")
+              | Теги:
+            = @website.tags.map(&:name).join('; ')
+        .card-footer.d-flex.align-items-center
+          - if current_user.id == @website.user_id || current_user.admin?
+            = link_to 'Редактировать', edit_website_path(@website), class: 'btn btn-dark mx-1'
+            = button_to 'Удалить', website_path(@website), method: :delete, data: { confirm: 'Подтвердите удаление' }, class: 'btn btn-secondary mx-1'

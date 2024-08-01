@@ -1,0 +1,24 @@
+.container.py-5
+  .row.justify-content-center
+    .col-md-6
+      .card.rounded
+        .card-header.text-center.rounded-top
+          h3.mb-0
+            | Вход
+        .card-body
+          = form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'formLogin', autocomplete: 'off', novalidate: true }) do |f|
+            .form-group
+              = f.label :email, 'Адрес электронной почты', class: 'form-label'
+              = f.email_field :email, class: 'form-control form-control-lg rounded ' + (resource.errors[:email].any? ? 'is-invalid' : ''), required: true
+              - if resource.errors[:email].any?
+                .invalid-feedback
+                  = resource.errors[:email].first
+            .form-group
+              = f.label :password, 'Пароль', class: 'form-label'
+              = f.password_field :password, class: 'form-control form-control-lg rounded ' + (resource.errors[:password].any? ? 'is-invalid' : ''), required: true, autocomplete: 'current-password'
+              - if resource.errors[:password].any?
+                .invalid-feedback
+                  = resource.errors[:password].first
+            .form-group.text-center.mt-3
+              = f.submit 'Войти', class: 'btn btn-dark btn-lg rounded w-100', id: 'btnLogin'
+          = render "devise/shared/links"

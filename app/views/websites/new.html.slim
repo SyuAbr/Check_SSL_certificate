@@ -1,0 +1,23 @@
+.container
+  = render 'shared/header'
+  .row
+    .col-md-12
+      .card.rounded
+        .card-header
+          h4 Добавить сайт
+        .card-body
+          = form_with(model: @website, url: websites_path, local: true) do |form|
+            - if @website.errors.any?
+              .alert.alert-danger
+                ul
+                  - @website.errors.full_messages.each do |message|
+                    li= message
+            .form-group
+              = form.label :address, 'Адрес'
+              = form.text_field :address, class: 'form-control', required: true
+            .form-group
+              = form.label :tag_ids, 'Теги'
+              = form.collection_select :tag_ids, Tag.all, :id, :name, { include_blank: false, prompt: "Выберите теги" }, { multiple: true, size: 5, class: 'form-control' }
+            .form-group
+              = form.submit 'Сохранить', class: 'btn btn-dark'
+              = link_to 'Отмена', websites_path, class: 'btn btn-secondary'

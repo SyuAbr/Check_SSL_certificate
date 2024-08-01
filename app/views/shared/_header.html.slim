@@ -1,0 +1,12 @@
+.header.d-flex.justify-content-between.align-items-center.py-3
+  = link_to root_path, class: 'text-dark text-decoration-none'
+    h3
+      | Проверятор
+  nav.d-flex.align-items-center.ms-4
+    = link_to 'Сайты', websites_path, class: 'btn btn-link text-dark fw-semibold fs-5 mx-3 text-decoration-none'
+    - if current_user.admin?
+      = link_to 'Теги', tags_path, class: 'btn btn-link text-dark fw-semibold fs-5 mx-3 text-decoration-none'
+      = link_to 'Пользователи', users_path, class: 'btn btn-link text-dark fw-semibold fs-5 mx-3 text-decoration-none'
+  div
+    = link_to "Личный кабинет", user_path(current_user), class: "btn btn-secondary mx-1"
+    = link_to "Выйти", signout_path, method: :delete, class: "btn btn-dark mx-1"

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Уведомление об истечении SSL-сертификата</h1>
+    <p>Здравствуйте  <%= @user.full_name %>,</p>
+    <p>Срок действия SSL-сертификата для сайта <%=  @website.address %> истекает <%= @website.certificate_expiration %>.</p>
+    <p>Пожалуйста обновите сертификат.</p>
+  </body>
+</html>

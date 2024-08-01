@@ -1,0 +1,33 @@
+.container
+
+
+  .row
+    .col-md-12
+      .card.rounded
+        .card-header.d-flex.justify-content-between.align-items-center
+          h4
+            | Сайты
+          = link_to 'Добавить сайт', new_website_path, class: 'btn btn-dark'
+        .card-body
+          table.table.table-striped
+            thead
+              tr
+                th
+                  | Адрес
+                th
+                  | Срок действия
+                th
+                  | Владелец
+                th
+                  | Теги
+            tbody
+              - @websites.each do |website|
+                tr
+                  td
+                    = link_to website.address, website_path(website)
+                  td
+                    = website.certificate_expiration.strftime("%d.%m.%Y")
+                  td
+                    = website.user.email
+                  td
+                    = website.tags.map(&:name).join('; ')

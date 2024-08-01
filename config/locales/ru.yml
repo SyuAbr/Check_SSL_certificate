@@ -1,0 +1,18 @@
+ru:
+  hello: "Привет, мир!"
+  errors:
+    messages:
+      record_invalid: "Валидация не прошла: %{errors}"
+      not_found: "Запись не найдена"
+  activerecord:
+    attributes:
+      user:
+        full_name: 'ФИО'
+        role: 'Роль'
+        email: 'Электронная почта'
+        password: 'Пароль'
+        api_token: 'API токен'
+    errors:
+      messages:
+        blank: "не может быть пустым"
+        taken: "уже занят"
